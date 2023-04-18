@@ -7,10 +7,17 @@
     <target name="makejar">
         <tstamp/>
         <mkdir dir="${build}"/>
-        <javac srcdir="${src}" destdir="${build}"/>
+        <javac srcdir="${src}" destdir="${build}">
+            <classpath>
+                <pathelement location="lib/spigot-1.19.4.jar"/>
+            </classpath>
+            </javac>
         <mkdir dir="${dist}/lib"/>
-        <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}">
-            <fileset dir="bin"></fileset>
+        <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}" encoding="UTF-8">
+            <fileset dir="lib"></fileset>
+            <fileset file="plugin.yml"></fileset>
+            <fileset file="config.yml"></fileset>
+            <fileset file="mesages.yml"></fileset>
         </jar>
         <delete dir="${build}"/>
         <delete dir="${dist}"/>
