@@ -3,8 +3,10 @@
     <target name="makejar" description="Create a jar for the project">
         <mkdir dir="target"></mkdir>
         <jar destfile="target/${ant.project.name}.jar">
-            <fileset dir="bin"></fileset>
+            <fileset dir="src"></fileset>
             <fileset file="plugin.yml"></fileset>
+            <fileset file="config.yml"></fileset>
+            <fileset file="messages.yml"></fileset>
         </jar>
     </target>
 </project>
