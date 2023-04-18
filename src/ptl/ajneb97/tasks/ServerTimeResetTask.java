@@ -17,7 +17,7 @@ public class ServerTimeResetTask {
 	private DateTimeFormatter dtf;
 	public ServerTimeResetTask(PlayerTimeLimit plugin) {
 		this.plugin = plugin;
-		this.dtf = DateTimeFormatter.ofPattern("HH:mm"); 
+		this.dtf = DateTimeFormatter.ofPattern("E-HH:mm"); 
 	}
 	
 	public void start() {

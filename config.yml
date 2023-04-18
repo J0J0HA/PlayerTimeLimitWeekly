@@ -10,7 +10,7 @@ world_whitelist_system:
   - world_nether
   - world_the_end
   teleport_coordinates_on_kick: spawn;0;60;0;90;0
-reset_time: "00:00"
+reset_time: "1-00:00"
 information_message_enabled_by_default: true
 data_save_time: 5
 action_bar: false
