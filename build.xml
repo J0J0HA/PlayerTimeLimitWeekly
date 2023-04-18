@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="PlayerTimeLimitWeekly" default="makejar" basedir=".">
-  <property name="src" location="src"/>
-  <property name="build" location="build"/>
-  <property name="dist" location="dist"/>
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    <property name="dist" location="dist"/>
 
-  <target name="makejar">
-    <tstamp/>
-    <mkdir dir="${build}"/>
-    <javac srcdir="${src}" destdir="${build}"/>
-    <mkdir dir="${dist}/lib"/>
-    <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
-    <delete dir="${build}"/>
-    <delete dir="${dist}"/>
-  </target>
+    <target name="makejar">
+        <tstamp/>
+        <mkdir dir="${build}"/>
+        <javac srcdir="${src}" destdir="${build}"/>
+        <mkdir dir="${dist}/lib"/>
+        <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}">
+            <fileset dir="bin"></fileset>
+        </jar>
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+    </target>
 </project>
