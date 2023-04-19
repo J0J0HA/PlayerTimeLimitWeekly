@@ -40,18 +40,21 @@ public class UtilsTime {
 		long currentMillis = System.currentTimeMillis();
 		
 		//Bukkit.getConsoleSender().sendMessage("reset time: "+resetTimeHour);
-		String[] sep = resetTimeHour.split(":");
-		String hour = sep[0];
+		String[] sepa = resetTimeHour.split("-");
+		String[] sepb = sepa[1].split(":");
+		String dayofweek = sepa[0];
+		String hour = sepb[0];
 		if(hour.startsWith("0")) {
 			hour = hour.charAt(1)+"";
 		}
-		String minute = sep[1];
+		String minute = sepb[1];
 		if(minute.startsWith("0")) {
 			minute = minute.charAt(1)+"";
 		}
 		
 		Calendar calendar = Calendar.getInstance();
 	    calendar.setTimeInMillis(currentMillis);
+	    calendar.set(Calendar.DAY_OF_WEEK, Integer.valueOf(dayofweek));
 	    calendar.set(Calendar.HOUR_OF_DAY, Integer.valueOf(hour));
 	    calendar.set(Calendar.MINUTE, Integer.valueOf(minute));
 	    calendar.set(Calendar.SECOND, 0);
