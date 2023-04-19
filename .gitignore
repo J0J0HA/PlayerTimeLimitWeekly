@@ -26,8 +26,6 @@ hs_err_pid*
 .metadata
 bin/
 tmp/
-target/
-lib/
 *.tmp
 *.bak
 *.swp
@@ -40,3 +38,7 @@ local.properties
 .recommenders
 
 .players/
+
+# JoJoJux
+target/
+lib/
