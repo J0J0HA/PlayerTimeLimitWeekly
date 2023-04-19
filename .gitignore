@@ -42,3 +42,4 @@ local.properties
 # JoJoJux
 target/
 lib/
+.vscode
