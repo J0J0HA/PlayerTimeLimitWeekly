@@ -65,7 +65,7 @@ public class PlayerConfig {
 	 }
 	  
 	public void reloadPlayerConfig() {
-		    if (config == null) {
+		    if (configFile == null) {
 		    	configFile = new File(plugin.getDataFolder() +File.separator + "players", filePath);
 		    }
 		    config = YamlConfiguration.loadConfiguration(configFile);
