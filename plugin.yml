@@ -1,8 +1,8 @@
-main: ptl.ajneb97.PlayerTimeLimit
+main: de.jojojux.ptlweekly.PlayerTimeLimit
 version: 1.6.1
 name: PlayerTimeLimit
 api-version: 1.13
-author: Ajneb97
+author: JoJoJux (orig. Ajneb97)
 softdepend: [Multiverse-Core,PlaceholderAPI]
 
 commands:
