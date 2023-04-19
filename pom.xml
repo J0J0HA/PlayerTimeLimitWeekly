@@ -52,6 +52,8 @@
                 <directory>${project.basedir}</directory>
                 <includes>
                     <include>plugin.yml</include>
+                    <include>config.yml</include>
+                    <include>messages.yml</include>
                 </includes>
             </resource>
         </resources>
