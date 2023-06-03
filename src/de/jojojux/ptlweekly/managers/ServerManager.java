@@ -1,24 +1,19 @@
 package de.jojojux.ptlweekly.managers;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import de.jojojux.ptlweekly.PlayerTimeLimit;
 import de.jojojux.ptlweekly.configs.MainConfigManager;
-import de.jojojux.ptlweekly.model.TimeLimitPlayer;
 import de.jojojux.ptlweekly.utils.UtilsTime;
 
 public class ServerManager {
 
 	private PlayerTimeLimit plugin;
+
+	private static final String CONFIG_PATH = "Data.next_millis_reset";
 
 	public ServerManager(PlayerTimeLimit plugin) {
 		this.plugin = plugin;
@@ -32,7 +27,7 @@ public class ServerManager {
 		String resetTimeHour = plugin.getConfigsManager().getMainConfigManager().getResetTime();
 		long finalMillis = UtilsTime.getNextResetMillis(resetTimeHour);
 
-		config.set("Data.next_millis_reset", finalMillis);
+		config.set(CONFIG_PATH, finalMillis);
 		plugin.saveConfig();
 	}
 
@@ -41,8 +36,8 @@ public class ServerManager {
 
 		// Se comprueba si el millis obtenido es menor al actual, si es asi
 		// se reinician los tiempos de los jugadores
-		if (config.contains("Data.next_millis_reset")) {
-			long millisReset = config.getLong("Data.next_millis_reset");
+		if (config.contains(CONFIG_PATH)) {
+			long millisReset = config.getLong(CONFIG_PATH);
 			if (System.currentTimeMillis() > millisReset) {
 				plugin.getPlayerManager().resetPlayers();
 			}
@@ -64,10 +59,6 @@ public class ServerManager {
 		}
 
 		List<String> worlds = mainConfig.getWorldWhitelistWorlds();
-		if (worlds.contains(world.getName())) {
-			return true;
-		}
-
-		return false;
+		return worlds.contains(world.getName());
 	}
 }

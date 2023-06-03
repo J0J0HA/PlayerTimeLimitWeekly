@@ -33,7 +33,7 @@ import de.jojojux.ptlweekly.tasks.ServerTimeResetTask;
 public class PlayerTimeLimit extends JavaPlugin {
 
 	PluginDescriptionFile pdfFile = getDescription();
-	public String version = pdfFile.getVersion();
+	public final String VERSION = pdfFile.getVersion();
 	public String latestversion;
 
 	public String rutaConfig;
@@ -45,7 +45,7 @@ public class PlayerTimeLimit extends JavaPlugin {
 
 	private DataSaveTask dataSaveTask;
 
-	public static String nombrePlugin = ChatColor.translateAlternateColorCodes('&', "&8[&bPlayerTime&cLimit&8] ");
+	public static final String PLUGIN_NAME = ChatColor.translateAlternateColorCodes('&', "&8[&bPlayerTime&cLimit&8] ");
 
 	@Override
 	public void onEnable() {
@@ -73,8 +73,8 @@ public class PlayerTimeLimit extends JavaPlugin {
 		}
 
 		Bukkit.getConsoleSender().sendMessage(
-				nombrePlugin + ChatColor.YELLOW + "Has been enabled! " + ChatColor.WHITE + "Version: " + version);
-		Bukkit.getConsoleSender().sendMessage(nombrePlugin + ChatColor.YELLOW + "Thanks for using my plugin!  "
+				PLUGIN_NAME + ChatColor.YELLOW + "Has been enabled! " + ChatColor.WHITE + "Version: " + VERSION);
+		Bukkit.getConsoleSender().sendMessage(PLUGIN_NAME + ChatColor.YELLOW + "Thanks for using my plugin!  "
 				+ ChatColor.WHITE + "~JoJoJux (modified; originally Ajneb97)");
 
 		updateChecker();
@@ -85,7 +85,7 @@ public class PlayerTimeLimit extends JavaPlugin {
 		this.configsManager.getPlayerConfigsManager().guardarJugadores();
 		serverManager.saveDataTime();
 		Bukkit.getConsoleSender().sendMessage(
-				nombrePlugin + ChatColor.YELLOW + "Has been disabled! " + ChatColor.WHITE + "Version: " + version);
+				PLUGIN_NAME + ChatColor.YELLOW + "Has been disabled! " + ChatColor.WHITE + "Version: " + VERSION);
 	}
 
 	public void registerCommands() {
@@ -168,7 +168,7 @@ public class PlayerTimeLimit extends JavaPlugin {
 			}
 			if (!textoConfig.contains("world_whitelist_system:")) {
 				getConfig().set("world_whitelist_system.enabled", false);
-				List<String> lista = new ArrayList<String>();
+				List<String> lista = new ArrayList<>();
 				lista.add("world");
 				lista.add("world_nether");
 				lista.add("world_the_end");
@@ -180,21 +180,24 @@ public class PlayerTimeLimit extends JavaPlugin {
 				getConfig().set("update_notification", true);
 				saveConfig();
 				messages.set("playerDoesNotExists", "&cThat player doesn't exists.");
-				List<String> lista = new ArrayList<String>();
-				lista.add("&c&m                                          ");
+				List<String> lista = new ArrayList<>();
+				
+				final String SPACING = "&c&m                                          ";
+
+				lista.add(SPACING);
 				lista.add("&7&l%player% Data:");
 				lista.add("&7Time left: &a%time_left%");
 				lista.add("&7Total played time: &a%total_time%");
-				lista.add("&c&m                                          ");
+				lista.add(SPACING);
 				messages.set("checkCommandMessage", lista);
-				lista = new ArrayList<String>();
-				lista.add("&c&m                                          ");
+				lista = new ArrayList<>();
+				lista.add(SPACING);
 				lista.add("&7Exact time when playtimes will be reset:");
 				lista.add("&e%reset_time%");
 				lista.add("");
 				lista.add("&7Remaining time until reset:");
 				lista.add("&e%remaining%");
-				lista.add("&c&m                                          ");
+				lista.add(SPACING);
 				messages.set("infoCommandMessage", lista);
 				configsManager.getMensajesConfigManager().saveMessages();
 			}
@@ -207,21 +210,20 @@ public class PlayerTimeLimit extends JavaPlugin {
 		try {
 			HttpURLConnection con = (HttpURLConnection) new URL(
 					"https://api.spigotmc.org/legacy/update.php?resource=96577").openConnection();
-			int timed_out = 1250;
-			con.setConnectTimeout(timed_out);
-			con.setReadTimeout(timed_out);
+			int timedOut = 1250;
+			con.setConnectTimeout(timedOut);
+			con.setReadTimeout(timedOut);
 			latestversion = new BufferedReader(new InputStreamReader(con.getInputStream())).readLine();
-			if (latestversion.length() <= 7) {
-				if (!version.equals(latestversion)) {
-					Bukkit.getConsoleSender()
-							.sendMessage(ChatColor.RED + "There is a new version available. " + ChatColor.YELLOW +
-									"(" + ChatColor.GRAY + latestversion + ChatColor.YELLOW + ")");
-					Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "You can download it at: " + ChatColor.WHITE
-							+ "https://www.spigotmc.org/resources/96577/");
-				}
+			if (latestversion.length() <= 7 && (!VERSION.equals(latestversion))) {
+				Bukkit.getConsoleSender()
+						.sendMessage(ChatColor.RED + "There is a new version available. " + ChatColor.YELLOW +
+								"(" + ChatColor.GRAY + latestversion + ChatColor.YELLOW + ")");
+				Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "You can download it at: " + ChatColor.WHITE
+						+ "https://www.spigotmc.org/resources/96577/");
+
 			}
 		} catch (Exception ex) {
-			Bukkit.getConsoleSender().sendMessage(nombrePlugin + ChatColor.RED + "Error while checking update.");
+			Bukkit.getConsoleSender().sendMessage(PLUGIN_NAME + ChatColor.RED + "Error while checking update.");
 		}
 	}
 }

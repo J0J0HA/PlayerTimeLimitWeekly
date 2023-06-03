@@ -190,7 +190,6 @@ public class Comando implements CommandExecutor {
 
 		msgManager.enviarMensaje(sender, messages.getString("commandResetTimeCorrect")
 				.replace("%player%", args[1]), true);
-		return;
 	}
 
 	// Se puede usar solo cuando el jugador esta conectado
@@ -229,7 +228,6 @@ public class Comando implements CommandExecutor {
 
 		msgManager.enviarMensaje(sender, messages.getString("commandTakeTimeCorrect")
 				.replace("%player%", args[1]).replace("%time%", time + ""), true);
-		return;
 	}
 
 	// Se puede usar solo cuando el jugador esta conectado
@@ -268,6 +266,5 @@ public class Comando implements CommandExecutor {
 
 		msgManager.enviarMensaje(sender, messages.getString("commandAddTimeCorrect")
 				.replace("%player%", args[1]).replace("%time%", time + ""), true);
-		return;
 	}
 }

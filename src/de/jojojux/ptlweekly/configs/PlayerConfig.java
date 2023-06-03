@@ -64,14 +64,11 @@ public class PlayerConfig {
 	}
 
 	public void reloadPlayerConfig() {
-		if (configFile == null) {
+		if (configFile == null || config == null) {
 			configFile = new File(plugin.getDataFolder() + File.separator + "players", filePath);
 		}
 		config = YamlConfiguration.loadConfiguration(configFile);
-
-		if (configFile != null) {
-			YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(configFile);
-			config.setDefaults(defConfig);
-		}
+		YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(configFile);
+		config.setDefaults(defConfig);
 	}
 }

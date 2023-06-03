@@ -2,11 +2,7 @@ package de.jojojux.ptlweekly.configs;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import de.jojojux.ptlweekly.PlayerTimeLimit;
@@ -19,7 +15,7 @@ public class PlayerConfigsManager {
 
 	public PlayerConfigsManager(PlayerTimeLimit plugin) {
 		this.plugin = plugin;
-		this.configPlayers = new ArrayList<PlayerConfig>();
+		this.configPlayers = new ArrayList<>();
 	}
 
 	public void configurar() {
@@ -36,7 +32,7 @@ public class PlayerConfigsManager {
 				folder.mkdirs();
 			}
 		} catch (SecurityException e) {
-			folder = null;
+			e.printStackTrace();
 		}
 	}
 
@@ -106,7 +102,7 @@ public class PlayerConfigsManager {
 	}
 
 	public void cargarJugadores() {
-		ArrayList<TimeLimitPlayer> jugadores = new ArrayList<TimeLimitPlayer>();
+		ArrayList<TimeLimitPlayer> jugadores = new ArrayList<>();
 
 		for (PlayerConfig playerConfig : configPlayers) {
 			FileConfiguration players = playerConfig.getConfig();

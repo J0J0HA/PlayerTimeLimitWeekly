@@ -149,11 +149,11 @@ public class PlayerManager {
 		try {
 			String[] sep = coordinates.split(";");
 			World world = Bukkit.getWorld(sep[0]);
-			double x = Double.valueOf(sep[1]);
-			double y = Double.valueOf(sep[2]);
-			double z = Double.valueOf(sep[3]);
-			float yaw = Float.valueOf(sep[4]);
-			float pitch = Float.valueOf(sep[5]);
+			double x = Double.parseDouble(sep[1]);
+			double y = Double.parseDouble(sep[2]);
+			double z = Double.parseDouble(sep[3]);
+			float yaw = Float.parseFloat(sep[4]);
+			float pitch = Float.parseFloat(sep[5]);
 
 			player.teleport(new Location(world, x, y, z, yaw, pitch));
 
@@ -163,7 +163,7 @@ public class PlayerManager {
 				player.sendMessage(MensajesManager.getMensajeColor(m));
 			}
 		} catch (Exception e) {
-			player.sendMessage(plugin.nombrePlugin + " &cError! Impossible to teleport &7" + player.getName()
+			player.sendMessage(plugin.PLUGIN_NAME + " &cError! Impossible to teleport &7" + player.getName()
 					+ " &cto this coordinates: &7" + coordinates);
 		}
 	}

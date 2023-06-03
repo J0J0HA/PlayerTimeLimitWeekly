@@ -3,7 +3,6 @@ package de.jojojux.ptlweekly.configs;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import de.jojojux.ptlweekly.PlayerTimeLimit;

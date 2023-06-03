@@ -1,9 +1,7 @@
 package de.jojojux.ptlweekly.listeners;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -20,7 +18,6 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import de.jojojux.ptlweekly.PlayerTimeLimit;
 import de.jojojux.ptlweekly.configs.MainConfigManager;
-import de.jojojux.ptlweekly.configs.others.TimeLimit;
 import de.jojojux.ptlweekly.managers.MensajesManager;
 import de.jojojux.ptlweekly.managers.PlayerManager;
 import de.jojojux.ptlweekly.model.TimeLimitPlayer;
@@ -74,14 +71,14 @@ public class PlayerListener implements Listener {
 		p.setName(player.getName());
 
 		FileConfiguration config = plugin.getConfig();
-		if (config.getString("update_notification").equals("true")) {
-			if (player.isOp() && !(plugin.version.equals(plugin.latestversion))) {
-				player.sendMessage(
-						plugin.nombrePlugin + ChatColor.RED + " There is a new version available. " + ChatColor.YELLOW +
-								"(" + ChatColor.GRAY + plugin.latestversion + ChatColor.YELLOW + ")");
-				player.sendMessage(ChatColor.RED + "You can download it at: " + ChatColor.GREEN
-						+ "https://www.spigotmc.org/resources/96577/");
-			}
+		if (config.getString("update_notification").equals("true")
+				&& (player.isOp() && !(plugin.VERSION.equals(plugin.latestversion)))) {
+			player.sendMessage(
+					plugin.PLUGIN_NAME + ChatColor.RED + " There is a new version available. " + ChatColor.YELLOW +
+							"(" + ChatColor.GRAY + plugin.latestversion + ChatColor.YELLOW + ")");
+			player.sendMessage(ChatColor.RED + "You can download it at: " + ChatColor.GREEN
+					+ "https://www.spigotmc.org/resources/96577/");
+
 		}
 	}
 
@@ -128,7 +125,6 @@ public class PlayerListener implements Listener {
 					player.sendMessage(MensajesManager.getMensajeColor(m));
 				}
 				event.setCancelled(true);
-				return;
 			}
 		}
 	}

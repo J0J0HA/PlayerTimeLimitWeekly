@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import net.md_5.bungee.api.ChatColor;
 import de.jojojux.ptlweekly.libs.centeredmessages.DefaultFontInfo;
 
@@ -114,7 +113,7 @@ public class MensajesManager {
 	}
 
 	public static String getCenteredMessage(String message) {
-		int CENTER_PX = 154;
+		final int CENTER_PX = 154;
 		int messagePxSize = 0;
 		boolean previousCode = false;
 		boolean isBold = false;
@@ -122,14 +121,9 @@ public class MensajesManager {
 		for (char c : message.toCharArray()) {
 			if (c == '\u00a7') {
 				previousCode = true;
-				continue;
-			} else if (previousCode == true) {
+			} else if (previousCode) {
 				previousCode = false;
-				if (c == 'l' || c == 'L') {
-					isBold = true;
-					continue;
-				} else
-					isBold = false;
+				isBold = (c == 'l' || c == 'L');
 			} else {
 				DefaultFontInfo dFI = DefaultFontInfo.getDefaultFontInfo(c);
 				messagePxSize += isBold ? dFI.getBoldLength() : dFI.getLength();
